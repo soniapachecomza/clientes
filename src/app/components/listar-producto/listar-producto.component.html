@@ -5,7 +5,7 @@
         <div class="card-body text-center">
           <span class="titulo">LISTADO DE PRODUCTOS</span>
           <button class="btn btn-success float-end" routerLink="/crear-producto">NUEVO</button>
-          <table class="table table-striped mt-3">
+          <table *ngIf="listProductos.length > 0" class="table table-striped mt-3">
             <thead>
               <tr>
                 <th scope="col">Producto</th>
@@ -16,28 +16,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>Coca Cola</th>
-                <td>Bebida</td>
-                <td>Misiones</td>
-                <td>2</td>
+              <tr *ngFor="let producto of listProductos">
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>{{ producto.ubicacion }}</td>
+                <td>{{ producto.precio | currency: 'USD' }}</td>
                 <td>
-                  <i class="fa-regular fa-pen-to-square text-primary icon"></i>
-                  <i class="fa-solid fa-trash text-danger icon"></i>
-                </td>
-              </tr>
-              <tr>
-                <th>Malboro 20</th>
-                <td>Cigarrillos</td>
-                <td>Mendoza</td>
-                <td>3</td>
-                <td>
-                  <i class="fa-regular fa-pen-to-square text-primary icon"></i>
-                  <i class="fa-solid fa-trash text-danger icon"></i>
+                  <i [routerLink]="['/editar-producto', producto._id]"   class="fa-regular fa-pen-to-square text-primary icon"></i>
+                  <i (click)="eliminarProducto(producto._id)" class="fa-solid fa-trash text-danger icon"></i>
                 </td>
               </tr>
             </tbody>
           </table>
+          <h5 style="text-align:start; margin-top:10px" *ngIf="listProductos.length == 0">No hay productos para mostrar</h5>
         </div>
       </div>
     </div>

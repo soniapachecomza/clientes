@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 //componentes
 import { AppComponent } from './app.component';
@@ -21,7 +21,7 @@ import { ListarProductoComponent } from './components/listar-producto/listar-pro
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
